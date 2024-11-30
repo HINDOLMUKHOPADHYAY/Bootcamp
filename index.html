@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<style>
+{
+  box-sizing: border-box;
+}
+:root 
+{
+    --backdrop-image-filter : blur(50px);
+    --vp-home-hero-codedhyan-background: -webkit-linear-gradient( 120deg, rgb(139, 112, 205) 10%,red 80%  );;
+}
+.clip 
+{
+    -webkit-background-clip: text;
+    backdrop-clip: text;
+    -webkit-text-fill-color: transparent;
+    user-select: none;
+}
+.clip_codeitup 
+{
+    background: var(--vp-home-hero-codedhyan-background);
+}
+body 
+{
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  color: #1B2522;
+
+  --title-duration: 500ms;
+  --sub-title-duration: 500ms;
+  --nav-duration: 200ms;
+  --btn-grow-duration: 200ms;
+  --scroll-down-duration: 200ms;
+
+  --sub-title-delay: calc(var(--title-duration) - 200ms);
+  --nav-delay: calc(var(--sub-title-delay) + var(--sub-title-duration));
+  --btn-grow-delay: var(--nav-delay);
+  --scroll-down-delay: var(--nav-delay);
+}
+.full-screen-header 
+{
+  height: 100vh;
+  background-image: url('https://github.com/HINDOLMUKHOPADHYAY/Bootcamp/blob/main/SS2_1_ii.jpeg?raw=true');
+  background-size: cover;
+  background-position-x: 40%;
+  background-position-y: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.nav 
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1B2522;
+  padding: .5rem 1rem;
+}
+.nav-top 
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  animation: nav-enter var(--nav-duration) var(--nav-delay) backwards;
+}
+.logo 
+{
+  width: 50px;
+}
+.nav-list 
+{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+}
+.nav-list a 
+{
+  text-decoration: none;
+  margin-left: 1rem;
+  color: white;
+  transition: color 100ms;
+}
+.nav-list a:hover 
+{
+  color: #CCC;
+}
+.title 
+{
+  font-size: 3rem;
+  margin: 0;
+  animation: title-enter var(--title-duration);
+}
+.sub-title 
+{
+  font-size: 1.5rem;
+  margin-top: .3rem;
+  margin-bottom: 1rem;
+  animation: sub-title-enter var(--sub-title-duration) var(--sub-title-delay) backwards;
+}
+.btn 
+{
+  background-color: #7bcdc4;
+  color: white;
+  border-radius: 10000px;
+  padding: .25em 1em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  transition: 100ms;
+}
+.btn:hover,
+.btn:focus 
+{
+  background-color: #287975;
+}
+.scroll-down-icon 
+{
+  position: absolute;
+  bottom: 1rem;
+  width: 30px;
+  animation:
+  scroll-down-bounce calc(var(--scroll-down-duration) + var(--scroll-down-delay)) 1s alternate infinite linear,
+  scroll-down-enter var(--scroll-down-duration) var(--scroll-down-delay) backwards;
+}
+.section 
+{
+  padding: 2rem;
+}
+.section-title 
+{
+  margin: 0;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-align: center;
+  color: black;
+}
+.curriculum-grid 
+{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 450px));
+  justify-content: center;
+  row-gap: 10px;
+  column-gap: 50px;
+}
+.curriculum-grid-item 
+{
+  display: flex;
+  align-items: center;
+}
+.curriculum-grid-item:hover img 
+{
+  animation: shake 100ms;
+}
+.curriculum-grid-item img 
+{
+  width: 50px;
+  margin-right: 1rem;
+}
+.section-accent 
+{
+  background-color: #7bcdc4;
+}
+.form 
+{
+  max-width: 900px;
+  margin: 0 auto;
+}
+.form label 
+{
+  color: black;
+  font-weight: bold;
+}
+.form input,
+.form textarea 
+{
+  width: 100%;
+  margin-top: .25rem;
+  margin-bottom: .75rem;
+  outline: none;
+  border: 1px solid #1B2522;
+  border-radius: .3em;
+  padding: .5em;
+  color: inherit;
+  font-family: inherit;
+  transition: border-color 100ms;
+}
+.form textarea 
+{
+  resize: vertical;
+  min-height: 75px;
+  max-height: 200px;
+}
+.form input:focus,
+.form textarea:focus 
+{
+  border-color: #214e4d;
+}
+.btn-container 
+{
+  text-align: end;
+}
+.btn-square 
+{
+  border-radius: .3em;
+}
+.pricing-cards-container 
+{
+  display: flex;
+  justify-content: center;
+}
+.pricing-card 
+{
+  padding: 1rem;
+  background-color: #DCF4FF;
+  border: 1px solid black;
+  border-radius: .3em;
+  margin: 1rem 0;
+  transition: transform 100ms;
+}
+.pricing-card:hover 
+{
+  transform: scale(1.05);
+}
+.pricing-card.accent 
+{
+  background-color: white;
+  margin: 0;
+}
+.pricing-card:first-child 
+{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  transform-origin: right;
+}
+.pricing-card:last-child 
+{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+  transform-origin: left;
+}
+.price-header 
+{
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.plan-name 
+{
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+}
+.plan-price 
+{
+  font-size: 2rem;
+  font-weight: bold;
+}
+.plan-price::after 
+{
+  content: '/mo';
+  font-size: .75rem;
+  color: #777;
+}
+.feature 
+{
+  margin-bottom: .5rem;
+}
+.feature.inactive 
+{
+  color: #777;
+  text-decoration: line-through;
+}
+.feature:last-child 
+{
+  margin-bottom: 0;
+}
+.btn-grow 
+{
+  animation: btn-grow-enter var(--btn-grow-duration) var(--btn-grow-delay) backwards;
+}
+.btn-grow:hover 
+{
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px 1px black;
+}
+@keyframes scroll-down-bounce 
+{
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-10px);
+  }
+}
+@keyframes shake 
+{
+  25% {
+    transform: rotate(5deg);
+  }
+
+  75% {
+    transform: rotate(-5deg);
+  }
+}
+@keyframes title-enter 
+{
+  from {
+    transform: translateX(-100vw);
+  }
+}
+@keyframes sub-title-enter 
+{
+  from {
+    transform: translateX(100vw);
+  }
+}
+@keyframes nav-enter 
+{
+  from {
+    transform: translateY(-100%);
+  }
+}
+@keyframes btn-grow-enter 
+{
+  from {
+    transform: scale(0);
+  }
+}
+@keyframes scroll-down-enter 
+{
+  from {
+    transform: scale(0) rotate(180deg);
+  }
+}
+@media (max-width: 700px) 
+{
+  .curriculum-grid {
+    grid-template-columns: minmax(auto, 450px);
+    row-gap: 30px;
+}
+.full-screen-header 
+{
+    background-position-x: 65%;
+}
+.pricing-cards-container 
+{
+    flex-wrap: wrap;
+}
+  .pricing-card,
+  .pricing-card.accent 
+  {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+  .pricing-card:first-child,
+  .pricing-card:last-child 
+   {
+    border-radius: .3em;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    transform-origin: center;
+  }
+  .pricing-card:last-child 
+  {
+    margin-bottom: 0;
+  }
+
+  .feature {
+    text-align: center;
+  }
+
+  .feature.inactive {
+    display: none;
+  }
+}
+</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>Full-stack Bootcamp</title>
+</head>
+<body>
+  <header class="full-screen-header">
+    <nav class="nav nav-top">
+      <span class="logo">Bootcamp</span>
+      <ul class="nav-list">
+        <li><a href="#">Curriculum</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a class="btn">Contact</a></li>
+      </ul>
+    </nav>
+    <h1 class="title">Full-stack Bootcamp</h1>
+    <span class="sub-title">From No Stack To Full Stack</span>
+    <a class="btn btn-grow"> Learn More </a>
+    <img class="scroll-down-icon" src="https://raw.githubusercontent.com/HINDOLMUKHOPADHYAY/Bootcamp/db8cbb34a7d1b1cac9461a3462ef4a912db11299/DOWNARROW.svg" alt="Scroll Down Icon">
+  </header>
+  <main>
+    <section class="section">
+      <h2 class="section-title">Curriculum</h2>
+      <div class="curriculum-grid">
+        <div class="curriculum-grid-item">
+          <img src="https://raw.githubusercontent.com/HINDOLMUKHOPADHYAY/Bootcamp/db8cbb34a7d1b1cac9461a3462ef4a912db11299/HTML5ICON.svg" alt="HTML 5 Icon">
+          <p>Start with the basics by learning HTML/CSS to build your first website</p>
+        </div>
+        <div class="curriculum-grid-item">
+          <img src="https://raw.githubusercontent.com/HINDOLMUKHOPADHYAY/Bootcamp/db8cbb34a7d1b1cac9461a3462ef4a912db11299/JSICON.svg" alt="Node JS Icon">
+          <p>Build interactive web applications with the world’s most popular backend</p>
+        </div>
+        <div class="curriculum-grid-item">
+          <img src="https://raw.githubusercontent.com/HINDOLMUKHOPADHYAY/Bootcamp/db8cbb34a7d1b1cac9461a3462ef4a912db11299/VSCODE.svg" alt="Visual Studio Code Icon">
+          <p>Use the latest technology for editing and creating amazing web applications</p>
+        </div>
+        <div class="curriculum-grid-item">
+          <img src="https://raw.githubusercontent.com/HINDOLMUKHOPADHYAY/Bootcamp/db8cbb34a7d1b1cac9461a3462ef4a912db11299/DATABASE.svg" alt="Database Icon">
+          <p>Manage application data by learning SQL and NoSQL database architecture</p>
+        </div>
+        <div class="curriculum-grid-item">
+          <img src="https://raw.githubusercontent.com/HINDOLMUKHOPADHYAY/Bootcamp/db8cbb34a7d1b1cac9461a3462ef4a912db11299/EDITPG.svg" alt="Web Page Edit Icon">
+          <p>Create stunning designs by using modern design tools like Figma and Sketch </p>
+        </div>
+        <div class="curriculum-grid-item">
+          <img src="https://raw.githubusercontent.com/HINDOLMUKHOPADHYAY/Bootcamp/db8cbb34a7d1b1cac9461a3462ef4a912db11299/REACTICON.svg" alt="React Icon">
+          <p>Use the most popular frontend framework to create modern PWAs </p>
+        </div>
+      </div>
+    </section>
+    <section class="section section-accent">
+      <div class="pricing-cards-container">
+        <div class="pricing-card">
+          <div class="price-header">
+            <div class="plan-name">Basic</div>
+            <div class="plan-price">$10</div>
+          </div>
+          <div class="plan-features">
+            <div class="feature">4 Videos Per Month</div>
+            <div class="feature">1 Project Based Video Per Month</div>
+            <div class="feature inactive">Weekly Live Streams</div>
+            <div class="feature inactive">24/7 Email Support</div>
+            <div class="feature inactive">24/7 Phone Support</div>
+            <div class="feature inactive">1 Project Code Review Per Month</div>
+          </div>
+        </div>
+        <div class="pricing-card accent">
+          <div class="price-header">
+            <div class="plan-name">Preferred</div>
+            <div class="plan-price">$25</div>
+          </div>
+          <div class="plan-features">
+            <div class="feature">6 Videos Per Month</div>
+            <div class="feature">2 Project Based Video Per Month</div>
+            <div class="feature">Weekly Live Streams</div>
+            <div class="feature">24/7 Email Support</div>
+            <div class="feature inactive">24/7 Phone Support</div>
+            <div class="feature inactive">1 Project Code Review Per Month</div>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="price-header">
+            <div class="plan-name">Pro</div>
+            <div class="plan-price">$50</div>
+          </div>
+          <div class="plan-features">
+            <div class="feature">8 Videos Per Month</div>
+            <div class="feature">4 Project Based Video Per Month</div>
+            <div class="feature">Weekly Live Streams</div>
+            <div class="feature">24/7 Email Support</div>
+            <div class="feature">24/7 Phone Support</div>
+            <div class="feature">1 Project Code Review Per Month</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <h2 class="section-title">Contact</h2>
+      <form class="form">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        <label for="message">Message</label>
+        <textarea name="message" id="message"></textarea>
+        <div class="btn-container">
+          <button class="btn btn-square" type="submit">Send</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <nav class="nav">
+        <p class="logo">Bootcamp</p>
+      <ul class="nav-list">
+        <li><a href="#">Curriculum</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a class="btn" href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </footer>
+</body>
+</html>
